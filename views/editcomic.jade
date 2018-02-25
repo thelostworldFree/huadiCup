@@ -1,0 +1,75 @@
+extends layout
+
+block content
+	.body
+		.col-sm-6
+			h1.title.inline.slide-right
+				= "修改书籍"
+
+			form.slide-right(method="post", action="/comicpage/upload", enctype="multipart/form-data")
+				input(type="hidden", name="comicid", value=id, readonly=true)
+				label.control-label 更换书籍封面
+				br
+				br
+				input(type="file", name="comiccover")
+				br
+				input.btn.btn-default.col-sm-offset-10(type="submit")
+				br
+				br
+
+			form.slide-right(name="editComic", action="/comicpage/updatecomic", method="post")
+				input(type="hidden", name="comicid", value=id, readonly=true)
+				label.control-label 书名:
+				input.form-control(type="text", name="email", readonly=true, value=title)
+				br
+				label.control-label 作者:
+				input.form-control(type="text", name="email", readonly=true, value=author)
+				br
+				label.control-label 描述:
+				input.form-control(type="text", name="description")
+				br
+				div.row
+					label.control-label.col-sm-2 类型:
+				div.row
+					label.control-label.col-sm-3.checkbox-inline(type="checkbox") 
+						input(type="radio", name="comicgenre", value="冒险")
+						| &nbsp;冒险
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="radio", name="comicgenre", value="动作")
+						| &nbsp;动作
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="radio", name="comicgenre", value="搞笑")
+						| &nbsp;搞笑
+				div.row
+					label.control-label.col-sm-3.checkbox-inline(type="checkbox") 
+						input(type="radio", name="comicgenre", value="犯罪")
+						| &nbsp;犯罪
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="radio", name="comicgenre", value="剧情")
+						| &nbsp;剧情
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="radio", name="comicgenre", value="科幻")
+						| &nbsp;科幻
+				div.row
+					label.control-label.col-sm-3.checkbox-inline(type="checkbox") 
+						input(type="radio", name="comicgenre", value="恐怖")
+						| &nbsp;恐怖
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="radio", name="comicgenre", value="推理")
+						| &nbsp;推理
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="radio", name="comicgenre", value="文学")
+						| &nbsp;文学
+				div.row
+					label.control-label.col-sm-3.checkbox-inline(type="checkbox") 
+						input(type="radio", name="comicgenre", value="浪漫")
+						| &nbsp;浪漫
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="radio", name="comicgenre", value="科幻")
+						| &nbsp;科幻
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="radio", name="comicgenre", value="心理")
+						| &nbsp;心理
+				br
+				input.btn.btn-default.col-sm-4(type="submit" value="修改")
+				a.btn.btn-default.col-sm-4(href="/comicpage?id=#{id}", style="float: right") 后退

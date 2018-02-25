@@ -1,0 +1,125 @@
+extends layout
+
+block content
+	.body.center
+		.col-sm-5
+			h1.title.inline.slide-right 
+				= " " + name
+				br
+				span 
+					each star in [1,2,3,4,5,6,7]
+						if (star <= rating)
+							span &#9733
+						else
+							span &#9734
+		.col-sm-9
+			div.slide-right
+				div.float-left
+					img(src = image, height = "80", weight = "80")
+				div
+					p
+						| 邮箱账号:
+						= " " + email
+					P
+						| 用户名:
+						= " " + name
+					p
+						| 个人描述:
+						= " " + description
+					p.p-laststyle
+						| 喜欢的书籍类型:
+						if genres == false
+							= " 暂无"
+						else
+							each genre in genres
+								= " " + genre.genre
+
+			div.slide-right#my-book
+				h4.listingbox.h-4title 我的书籍
+				div.row#book-list
+					if listings != false
+						table.table.table-striped.table-bordered.table-hover
+							tr
+								th 书名
+								th 作者
+								th 是否拥有
+								if authLevel == 3
+									th 操作
+								else
+									th 出租请求
+							each listing in listings
+								tr
+									td
+										a.tablelink(href='/comicpage?id=#{listing.comicid}') #{listing.title}
+									td
+										a.tablelink(href='/comicpage?id=#{listing.comicid}') #{listing.author}
+									if listing.isrented
+										td.red 已借出
+									else
+										td
+											a.tablelink.green(href='/profile?username=#{listing.owner}') 拥有
+									if authLevel == 3
+										if listing.isrented
+											td
+												form(name="deleteListing", action='/profile/deleteListing', method="post")
+													button.btn.btn-default.col-sm-4(type="submit", name="id", value='#{listing._id}') 删除
+										else
+											td
+												form(name="deleteListing", action='/profile/deleteListing', method="post")
+													button.btn.btn-default.col-sm-4(type="submit", name="id", value='#{listing._id}') 删除
+
+									else
+										if listing.isrented
+											td Comic Already 已借出
+										else
+											td
+												form(name="requestRental", action=' /message/writeMessage/write', method="post")
+														input(type="hidden", name="user", value=email, readonly=true)
+														input(type="hidden", name="subject", value=listing.title, readonly=true)
+														input(type="hidden", name="message", value="你好，我想借你这本书可以吗？", readonly=true)
+														input(type="hidden", name="rentalRequest", value="true", readonly="true")
+														button.btn.btn-default.col-sm-10(type="submit", name="listingid", value='#{listing._id}') 发起请求
+
+					else
+						h5.red 你还没有书单
+		.col-sm-9
+			br
+			div.slide-right
+				h4.h-title 信息
+				a(href="/message")
+					button.btn.btn-default.col-sm-3
+						= "用户所有的信息"
+				form(name="writeMessage", action="/message/writeMessage", method="post")
+					button.btn.btn-default.col-sm-3(type="submit", name="email", value= email)
+						= "给此用户写信息"
+		.col-sm-9
+			br
+			div.slide-right
+				h4.h-title 评价
+				form(name="writeReview", action="/readUserReview", method="post")
+					button.btn.btn-default.col-sm-3(type="submit", name="email", value= email)
+						= "用户的所有评价"
+				form(name="writeReview", action="/writeUserReview", method="post")
+					button.btn.btn-default.col-sm-3(type="submit", name="email", value= email)
+						= "给此用户写评价"
+		.col-sm-9
+			br
+			div.slide-right
+				if (authLevel == 0 || authLevel == 1 || authLevel == 3)
+					h4.h-4title 编辑功能
+					form(name="getEdit", action="/profile/edit", method="post")
+						button.btn.btn-default.col-sm-2(name= "email", value= email) 编辑个人信息
+		.col-sm-9
+			div.slide-right
+				if (authLevel == 0 || authLevel == 1)
+					br
+					h4.h-4title 账户管理
+					form(name="deleteAcc", action="/profile/deleteAccount", method="post")
+						button.btn.btn-default.col-sm-2(type="submit", name= "email", value= email)删除账户
+				if (authLevel == 0)
+					if (profileLevel == 2)
+						form(name="makeAdmin", action="/profile/makeAdmin", method="post")
+							button.btn.btn-default.col-sm-2(type="submit", name= "email", value= email)管理账户
+					else if (profileLevel == 1)
+						form(name="makeAdmin", action="/profile/makeAdmin", method="post")
+							button.btn.btn-default.col-sm-2(type="submit", name= "email", value= email) 撤回操作

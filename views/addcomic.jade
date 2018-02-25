@@ -1,0 +1,72 @@
+extends layout
+
+block content
+    .body
+        div(class="container")#container-width
+
+            h1#addbook 添加书籍
+
+            form(class="form-horizontal", role="form", method="post", action="/addcomic/addedcomic")
+                input(name="login", type="hidden", value=login)
+                div(class="form-group")
+                    label(class="control-label col-sm-2", for="comictitle") 书籍名称:
+                    div(class="col-sm-10")
+                        input(type="text", class="form-control", name="comictitle", placeholder="请输入书名")
+                
+                div(class="form-group")
+                    label(class="control-label col-sm-2", for="comicauthor") 书籍作者:
+                    div(class="col-sm-10")
+                        input(type="text", class="form-control", name="comicauthor", placeholder="请输入作者")
+
+                div(class="form-group")
+                    label(class="control-label col-sm-2", for="comicdescription") 书籍描述:
+                    div(class="col-sm-10")
+                        input(type="text", class="form-control", name="comicdescription", placeholder="请描述书籍内容")
+
+                div.row
+                    label.control-label.col-sm-2 书籍类型:
+                div.row
+                    label.control-label.col-sm-3.checkbox-inline(type="checkbox") 
+                        input(type="radio", name="comicgenre", value="冒险")
+                        | &nbsp;冒险
+                    label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+                        input(type="radio", name="comicgenre", value="动作")
+                        | &nbsp;动作
+                    label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+                        input(type="radio", name="comicgenre", value="搞笑")
+                        | &nbsp;搞笑
+                div.row
+                    label.control-label.col-sm-3.checkbox-inline(type="checkbox") 
+                        input(type="radio", name="comicgenre", value="犯罪")
+                        | &nbsp;犯罪
+                    label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+                        input(type="radio", name="comicgenre", value="剧情")
+                        | &nbsp;剧情
+                    label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+                        input(type="radio", name="comicgenre", value="科幻")
+                        | &nbsp;科幻
+                div.row
+                    label.control-label.col-sm-3.checkbox-inline(type="checkbox") 
+                        input(type="radio", name="comicgenre", value="恐怖")
+                        | &nbsp;恐怖
+                    label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+                        input(type="radio", name="comicgenre", value="推理")
+                        | &nbsp;推理
+                    label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+                        input(type="radio", name="comicgenre", value="文学")
+                        | &nbsp;文学
+                div.row
+                    label.control-label.col-sm-3.checkbox-inline(type="checkbox") 
+                        input(type="radio", name="comicgenre", value="浪漫")
+                        | &nbsp;浪漫
+                    label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+                        input(type="radio", name="comicgenre", value="科幻")
+                        | &nbsp;科幻
+                    label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+                        input(type="radio", name="comicgenre", value="心理")
+                        | &nbsp;心理
+
+                div.center(class="form-group")
+                    div(class="col-sm-offset-2 col-sm-10")
+                        input(type="submit", class="btn btn-default", method="post", action="/addcomic/addedcomic", value="确认")
+                            

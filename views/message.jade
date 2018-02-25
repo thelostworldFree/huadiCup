@@ -1,0 +1,71 @@
+extends layout
+
+block content
+	.body
+		.col-sm-10
+			h1.title.inline.slide-right
+				= "信息"
+		.div.scrollable
+			table(id="messageList")		
+				tr
+					th
+						
+					th
+						| 发送方
+					th.align-left
+						| 主题
+					th.align-right
+						| 日期
+				- var id = 0
+				each mess in message
+					- id++
+					.div
+						form(name="readMessage", action="/message/read", method="post", id=id)
+							input(type="hidden", value=mess.id, name="id")
+						tr(onclick="var x = document.getElementById(#{id}).submit();", form=id)
+							td(width="10%")
+								button.btn.btn-default(type="submit", formaction="/message/delete", form=id) 删除
+							td.align-left
+								| #{mess.sender}
+							td.align-left
+								| #{mess.subject}
+							td.align-right
+								- var date = new Date();
+								if (mess.date.getDate() == date.getDate() && mess.date.getMonth() == date.getMonth() && mess.date.getFullYear() && date.getFullYear)
+									if (mess.date.getHours() > 12) 
+										| #{mess.date.getHours()-12}:
+										if (mess.date.getMinutes() < 10) 
+											| 0#{mess.date.getMinutes()} PM
+										else 
+											| #{mess.date.getMinutes()} PM
+									else
+										| #{mess.date.getHours()}:
+										if (mess.date.getMinutes() < 10) 
+											| 0#{mess.date.getMinutes()} AM
+										else 
+											| #{mess.date.getMinutes()} AM
+								else 
+									if (mess.date.getMonth() == 1)
+										| Jan #{mess.date.getDate()}
+									if (mess.date.getMonth() == 2)
+										| Feb #{mess.date.getDate()}
+									if (mess.date.getMonth() == 3)
+										| Mar #{mess.date.getDate()}
+									if (mess.date.getMonth() == 4)
+										| Apr #{mess.date.getDate()}
+									if (mess.date.getMonth() == 5)
+										| May #{mess.date.getDate()}
+									if (mess.date.getMonth() == 6)
+										| Jun #{mess.date.getDate()}
+									if (mess.date.getMonth() == 7)
+										| Jul #{mess.date.getDate()}
+									if (mess.date.getMonth() == 8)
+										| Aug #{mess.date.getDate()}
+									if (mess.date.getMonth() == 9)
+										| Sept #{mess.date.getDate()}
+									if (mess.date.getMonth() == 10)
+										| Oct #{mess.date.getDate()}
+									if (mess.date.getMonth() == 11)
+										| Nov #{mess.date.getDate()}
+									if (mess.date.getMonth() == 12)
+										| Dec #{mess.date.getDate()}

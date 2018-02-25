@@ -1,0 +1,47 @@
+extends layout
+
+block content
+	.body
+		div.row
+			h2 欢迎来到歩科君^_^
+			a.btn.btn-success(href="/addcomic")
+				span(class='glyphicon glyphicon-plus')
+				|  &nbsp;添加书籍
+		hr
+		div.row#find-search
+			form#search.form-horizontal(role="search", action="/search", method="post")
+				label.control-label#h-find(for="search") 查找书籍或用户:
+				div.input-group
+					input.form-control(type="text" placeholder="请输入你的查找对象" name="search")
+					div.input-group-btn
+						button.btn.btn-default(type="submit" value="Search")
+							span.glyphicon.glyphicon-search
+				div.row.margined#radio-width
+					label.control-label.col-sm-1.radio-inline(type="radio") 
+						input(type="radio", name="searchtype", value="user", checked="checked")
+						| 用户
+					label.control-label.col-sm-1.radio-inline(type="radio")
+						input(type="radio", name="searchtype", value="comic") 
+						| 书籍
+		hr
+		div.row
+			h3.h-title推荐书籍
+			if recommendation
+				if length == 0
+					div 很遗憾，未查找到符合你喜欢类型的书籍..
+				else
+					table.table.table-striped.table-bordered.table-hover
+						tr
+							th 书籍名称
+							th 作者
+							th 类型
+						each comic in recommendation
+							tr
+								td 
+									a.tablelink(href='/comicpage?id=#{comic._id}') #{comic.title}
+								td 
+									a.tablelink(href='/comicpage?id=#{comic._id}') #{comic.author}
+								td
+									a.tablelink(href='/comicpage?id=#{comic._id}') #{comic.genre}
+			else
+				div 很遗憾，未查找到符合你喜欢类型的书籍.

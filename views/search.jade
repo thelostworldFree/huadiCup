@@ -1,0 +1,57 @@
+extends layout
+
+block content
+	.body
+		div.row#find-search
+			form#search.form-horizontal(role="search", action="/search", method="post")
+				label#h-findafter.control-label(for="search") 输入用户或者书籍:
+				div.input-group
+					input.form-control(type="text" placeholder="查找..." name="search")
+					div.input-group-btn
+						button.btn.btn-default(type="submit" value="Search")
+							span.glyphicon.glyphicon-search
+				div.row.margined#radio-width
+					label.control-label.col-sm-1.radio-inline(type="radio") 
+						input(type="radio", name="searchtype", value="user", checked="checked")
+						| 用户
+					label.control-label.col-sm-1.radio-inline(type="radio")
+						input(type="radio", name="searchtype", value="comic") 
+						| 书籍
+		hr
+		if nosearch
+		else	
+			div.row
+				h2  '#{searched}'的查询结果
+			div.row
+				if searchtype == 'user'
+					if exists
+						table.table.table-striped.table-bordered.table-hover
+							tr
+								th 邮箱账号
+								th 用户名
+							each user in data
+								tr
+									td
+										a.tablelink(href='/profile?username=#{user.username}') #{user.username}
+									td
+										a.tablelink(href='/profile?username=#{user.username}') #{user.displayName}
+					else
+						h5 很抱歉，未找到此用户
+				if searchtype == 'comic'
+					if exists
+						table.table.table-striped.table-bordered.table-hover
+							tr
+								th 书名
+								th 作者
+								th 类别
+							each comic in data
+								tr
+									td 
+										a.tablelink(href='/comicpage?id=#{comic._id}') #{comic.title}
+									td 
+										a.tablelink(href='/comicpage?id=#{comic._id}') #{comic.author}
+									td
+										a.tablelink(href='/comicpage?id=#{comic._id}') #{comic.genre}
+					else
+						h5 很抱歉，未找到此书籍
+					

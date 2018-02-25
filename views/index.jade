@@ -1,0 +1,51 @@
+extends layout
+
+block content
+	.body#register-body
+		.row#register_title
+			.col-sm-6
+				h1.title 登录
+			div.shaded-box.col-sm-4
+				.col-sm-2
+					a.btn.btn-default.center#btn-login(href="/signup", role="button") 没有账号？请点击这里
+		form#login.form-horizontal(role="form", action="/users/login", method="post")
+		
+		
+			if emailnotempty
+				if userexists
+					#email-form.form-group.form-line
+						label.control-label.col-sm-2(for="email") 邮箱账号:
+						.col-sm-9
+							input#email.form-control(type="email", placeholder="请输入你的邮箱账号", name="email")
+				else
+					#email-form.form-group.has-error
+						label.control-label.col-sm-2(for="email") 邮箱账号:
+						.col-sm-9
+							label.control-label(for="email") 该账号未注册
+							input#email.form-control(type="email", placeholder="请输入你的邮箱账号", name="email")
+			else
+				#email-form.form-group.has-error
+					label.control-label.col-sm-2(for="email") 邮箱账号:
+					.col-sm-9
+						label.control-label(for="email") 账号不能为空
+						input#email.form-control(type="email", placeholder="请输入你的邮箱账号", name="email")
+	
+			if (matching && passnotempty)
+				.form-group.form-line
+					label.control-label.col-sm-2(for="pwd") 密码:
+					.col-sm-9
+						input#pwd.form-control(type="password", placeholder="请输入你的密码", name="password")
+			else
+				if !matching
+					.form-group.has-error
+						label#confirm-pass.control-label.col-sm-2(for="pwd") 密码:
+						.col-sm-9
+							label.control-label(for="pwd") 密码错误
+							input#pwd.form-control(type="password", placeholder="请输入你的密码", name="password")
+				else if !passnotempty
+					.form-group.has-error
+						label#confirm-pass.control-label.col-sm-2(for="pwd") 密码:
+						.col-sm-9
+							label.control-label(for="pwd") 密码不能为空
+							input#pwd.form-control(type="password", placeholder="请输入你的密码", name="password")
+			button.btn.btn-default.loginbutton.col-sm-offset-10#btn-register(type="submit") 登录

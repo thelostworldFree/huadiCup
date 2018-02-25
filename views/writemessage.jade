@@ -1,0 +1,21 @@
+extends layout
+
+block content
+	.body
+		.col-sm-10.col-sm-offset-1
+			h1.title.slide-right
+				= "写消息"
+			form(name="writeMessage", action="/message/writeMessage/write", method="post")
+				input(type="hidden", name="rentalRequest", value= rentRequest)
+				label.control-label 接受方:
+				input.form-control(type="text", name="user", value= email)
+				br
+				label.control-label 主题:
+				input.form-control(type="text", name="subject", value= subject)
+				br
+				label.control-label 内容:
+				br 
+				textarea.textbox-size(name="message") #{message}
+				br
+				br
+				input.btn.btn-default.col-sm-offset-10(type="submit" value="确认")

@@ -1,0 +1,102 @@
+extends layout
+
+block content
+	.body
+		.col-sm-6
+			h1.title.inline.slide-right
+				= "修改个人信息"
+			form.slide-right(method="post", action="/profile/upload", enctype="multipart/form-data")
+				input(type="hidden", name="email", value=email, readonly=true)
+				label.control-label 更改头像
+				br
+				br
+				input(type="file", name="profilePic")
+				br
+				input.btn.btn-default.col-sm-offset-10(type="submit")
+				br
+				br
+			form.slide-right(name="editProfile", action="/profile/updateprofile", method="post")
+				label.control-label 邮箱账号:
+				input.form-control(type="text", name="email", readonly=true, value=email)
+				br
+				label.control-label 用户名称:
+				input.form-control(type="text", name="displayName")
+				br
+				label.control-label 个人描述:
+				input.form-control(type="text", name="description")
+				br
+				div.row
+					label.control-label.col-sm-3 更改你喜欢书籍的类型:
+				div.row
+					.col-sm-2
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox") 
+						input(type="checkbox", name="genre[]", value="冒险")
+						| 冒险
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="checkbox", name="genre[]", value="动作")
+						| 动作
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="checkbox", name="genre[]", value="搞笑")
+						| 搞笑
+				div.row
+					.col-sm-2
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox") 
+						input(type="checkbox", name="genre[]", value="犯罪")
+						| 犯罪
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="checkbox", name="genre[]", value="剧情")
+						| 剧情
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="checkbox", name="genre[]", value="科幻")
+						| 科幻
+				div.row
+					.col-sm-2
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox") 
+						input(type="checkbox", name="genre[]", value="恐怖")
+						| 恐怖
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="checkbox", name="genre[]", value="推理")
+						| 推理
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="checkbox", name="genre[]", value="文学")
+						| 文学
+				div.row
+					.col-sm-2
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox") 
+						input(type="checkbox", name="genre[]", value="浪漫")
+						| 浪漫
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="checkbox", name="genre[]", value="科幻")
+						| 科幻
+					label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+						input(type="checkbox", name="genre[]", value="心理")
+						| 心理
+				br
+				input.btn.btn-default.col-sm-4(type="submit" value="确认修改")
+				button.btn.btn-default.col-sm-4(onclick="window.history.back()", style="float: right") 后退
+				br
+				br
+				br
+			form.slide-right(name="changePassword", action="/profile/updatepwd", method="post")
+				input(type="hidden", name="email", value=email, readonly=true)
+				label.control-label 旧的密码:
+				input.form-control.inline(type="text", name="password")
+				if (!passnotempty)
+					span 密码不能为空
+				else if (wrongpassword)
+					span 两次输入的密码不对
+				br
+				label.control-label 新的密码:
+				input.form-control(type="text", name="newPassword")
+				br
+				label.control-label 确认新密码:
+				input.form-control(type="text", name="confirmPassword")
+				if (!newpasswordnotempty)
+					span Enter new password
+				else if (!matching)
+					span Passwords do not match
+				br
+				input.btn.btn-default.col-sm-4(type="submit" value="确认修改")
+				button.btn.btn-default.col-sm-4(onclick="window.history.back()", style="float: right") 后退
+				br
+				br

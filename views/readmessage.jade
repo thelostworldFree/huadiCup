@@ -1,0 +1,28 @@
+extends layout
+
+block content
+	.body
+		.col-sm-9
+			div.slide-right
+				hr
+				div.float-left
+					img(src = image, height = "80", weight = "80")
+				div
+					p
+						| 邮箱账号:
+						= " " + email
+					P
+						| 用户名:
+						= " " + name
+					P
+						| 主题:
+						= " " + msg.subject
+					hr
+					textarea.textbox-size(readonly) #{msg.message}
+				form(name="writeMessage", action="/message/writeMessage", method="post", id="formID")
+						input(type="hidden", value=msg.id, name="id")
+						input(type="hidden", value=msg.subject, name="subject")
+						input(type="hidden", value=msg.sender, name="sender")
+						input(type="hidden", value=msg.message, name="message")
+						.col-sm-offset-10
+							button.btn.btn-default(type="submit") 点此回复

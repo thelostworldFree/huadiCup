@@ -1,0 +1,82 @@
+extends layout
+
+block content
+	.body#sign-body
+		h1.title 注册
+		form#signup.form-horizontal(role="form", action="/users/register", method="post")
+			if emailnotempty
+				#email-form.form-group
+					label.control-label.col-sm-3(for="email") 邮箱账号:
+					.col-sm-8
+						input#email.form-control(type="email", placeholder="请输入你的邮箱账号", name="email")
+			else
+				#email-form.form-group.has-error
+					label.control-label.col-sm-3(for="email") 邮箱账号:
+					.col-sm-8
+						label.control-label(for="email") 账号不能为空
+						input#email.form-control(type="email", placeholder="请输入你的邮箱账号", name="email")
+			if passnotempty
+				.form-group
+					label.control-label.col-sm-3(for="pwd") 密码:
+					.col-sm-8
+						input#pwd.form-control(type="password", placeholder="请输入你的密码", name="password")
+			else
+				.form-group.has-error
+					label.control-label.col-sm-3(for="pwd") 密码:
+					.col-sm-8
+						label.control-label(for="pwd") 密码不能为空
+						input#pwd.form-control(type="password", placeholder="请输入你的密码", name="password")
+			if matching
+				.form-group
+					label.control-label.col-sm-3(for="pwd")确认密码:
+					.col-sm-8
+						input#pwd.form-control(type="password", placeholder="请再次输入你的密码", name="repeatPassword")
+			else
+				.form-group.has-error
+					label#confirm-pass.control-label.col-sm-3(for="pwd") 确认密码:
+					.col-sm-8
+						label.control-label(for="pwd") Password Doesnt Match
+						input#pwd.form-control(type="password", placeholder="请再次输入你的密码", name="repeatPassword")
+			div.row
+				label.control-label.col-sm-3 请选择你喜欢的类型:
+			div.row
+				label.control-label.col-sm-5.checkbox-inline(type="checkbox") 
+					input(type="checkbox", name="genre[]", value="冒险")
+					| 冒险
+				label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+					input(type="checkbox", name="genre[]", value="动作")
+					| 动作
+				label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+					input(type="checkbox", name="genre[]", value="浪漫")
+					| 浪漫
+			div.row
+				label.control-label.col-sm-5.checkbox-inline(type="checkbox") 
+					input(type="checkbox", name="genre[]", value="犯罪")
+					| 犯罪
+				label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+					input(type="checkbox", name="genre[]", value="剧情")
+					| 剧情
+				label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+					input(type="checkbox", name="genre[]", value="奇幻")
+					| 奇幻
+			div.row
+				label.control-label.col-sm-5.checkbox-inline(type="checkbox") 
+					input(type="checkbox", name="genre[]", value="恐怖")
+					| 恐怖
+				label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+					input(type="checkbox", name="genre[]", value="推理")
+					| 推理
+				label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+					input(type="checkbox", name="genre[]", value="散文")
+					| 散文
+			div.row
+				label.control-label.col-sm-5.checkbox-inline(type="checkbox") 
+					input(type="checkbox", name="genre[]", value="传奇")
+					| 传奇
+				label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+					input(type="checkbox", name="genre[]", value="科幻")
+					| 科幻
+				label.control-label.col-sm-2.checkbox-inline(type="checkbox")
+					input(type="checkbox", name="genre[]", value="心理")
+					| 心理
+			button.btn.btn-default.col-sm-offset-10(type="submit") 注册

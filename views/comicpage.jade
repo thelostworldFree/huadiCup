@@ -1,0 +1,85 @@
+extends layout
+
+block content
+    .body.center
+        .col-sm-5
+            if exists
+                h2.green 该书籍已经存在
+                br
+            if listingAdded
+                h2.green 添加成功
+                br
+            if listingExists
+                h2.red 你的书单已有这本书了
+                br
+
+            h1.title.inline.slide-right 
+                = " " + comicname
+                br
+                span 
+                    each star in [1,2,3,4,5,6,7]
+                        if (star <= rating)
+                            span &#9733
+                        else
+                            span &#9734
+        .col-sm-9
+            div.slide-right
+                div.float-left.sol-sm-3
+                    img(src='/images/comicPics/' + coverimage, height="80")
+
+            div.slide-right
+                p
+                    | 作者:
+                    = " " + authorname
+                P
+                    | 类型:
+                    = " " + genre
+                p#p-padding-left
+                    | 描述:
+                    = " " + description
+
+        .col-sm-9
+            br
+            div.slide-right
+                h4.h-title 书评
+                form(name="readReview", action="/readComicReview", method="post")
+                    input(name="comicid", type="hidden", value=id)
+                    button.btn.btn-default.col-sm-3(type="submit", name="comicname", value= comicname)
+                        = "看书评"
+                form(name="writeReview", action="/writeComicReview", method="post")
+                    input(name="comicid", type="hidden", value=id)
+                    button.btn.btn-default.col-sm-3(type="submit", name="comicname", value= comicname)
+                        = "写书评"
+
+        .col-sm-9
+            br
+            div.slide-right
+                h4.h-title 书单
+                form(name="addListing", action="/comicpage/addListing", method="post")
+                    button.btn.btn-default.col-sm-6(type="submit", name="comicid", value=id)
+                        = "添加该书籍至你的书单"
+
+                div.row.listingbox#bookrent-list
+                    if comicowners != false
+                        table.table.table-striped.table-bordered.table-hover
+                            tr
+                                th 拥有者
+                                th 是否拥有
+                            each listing in comicowners
+                                tr
+                                    td
+                                        a.tablelink(href='/profile?username=#{listing.owner}') #{listing.owner}
+                                    if listing.isrented
+                                        td.red 已借出
+                                    else
+                                        td
+                                            a.tablelink.green(href='/profile?username=#{listing.owner}') 拥有
+                    else
+                        h5.red 未在书单找到这本书
+
+        .col-sm-9
+            br
+            div.slide-right
+                h4.h-4title 修改书籍
+                form(name="getEdit", action="/comicpage/edit", method="post")
+                    button.btn.btn-default.col-sm-2(name= "comicid", value=id) 修改

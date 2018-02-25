@@ -1,0 +1,329 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background: url("../images/background.png");
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    background-attachment: fixed;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.body {
+    margin-top: 80px;
+    padding: 50px;
+}
+
+.title {
+	padding-bottom: 20px;
+	text-align: center;
+}
+.center{
+	margin-top: 20px;
+}
+#not-member {
+	margin-top: 8px;
+}
+.shaded-box {
+	/*background-color: gray;*/
+	height: 70px;
+}
+.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+	height: 80px;
+}
+.navbar-brand {
+	display: block;
+	padding-top:0;
+	margin-top: -15px;
+}
+#confirm-pass {
+	margin-top: 25px !important;
+}
+
+.float-left {
+    float: left;
+    padding-right: 20px;
+}
+
+.slide-right {
+    padding-left: 110px;
+}
+.loginbutton, .facebookbutton{
+	width: 200px;
+	display: block;
+}
+.margined{
+	margin: 10px;
+}
+
+h1 {
+    font-family: Consolas, monaco, monospace;
+	font-size: 150px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26px;
+	padding-bottom: 20px;
+	text-align: left;
+}
+
+#title {
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 50px;
+    margin-top: -3px;
+}
+
+.span3 {  
+    height: 400px !important;
+    overflow: scroll;
+}
+.tablelink{
+	display:block;
+	width: 100%;
+	height: 100%;
+	color:black;
+}
+/* Star rating code from http://code.stephenmorley.org/html-and-css/star-rating-widget/ */
+.starRating:not(old){
+  display        : inline-block;
+  /* This line determines the number of stars.  Each star is 1.5em */
+  width          : 10.5em;
+  height         : 1.5em;
+  overflow       : hidden;
+  vertical-align : bottom;
+}
+
+.starRating:not(old) > input{
+  margin-right : -100%;
+  opacity      : 0;
+}
+
+.starRating:not(old) > label{
+  display         : block;
+  float           : right;
+  position        : relative;
+  background      : url('star-off.svg');
+  background-size : contain;
+}
+
+.starRating:not(old) > label:before{
+  content         : '';
+  display         : block;
+  width           : 1.5em;
+  height          : 1.5em;
+  background      : url('star-on.svg');
+  background-size : contain;
+  opacity         : 0;
+  transition      : opacity 0.2s linear;
+}
+
+.starRating:not(old) > label:hover:before,
+.starRating:not(old) > label:hover ~ label:before,
+.starRating:not(old) > label:hover ~ label:before,
+.starRating:not(:hover) > :checked ~ label:before{
+  opacity : 1;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.word-wrap {
+  width: 11em;
+  word-wrap: break-word;
+}
+
+#centered {
+    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* From http://www.electrictoolbox.com/jquey-make-entire-table-row-clickable/ */
+table#messageList {
+    border-collapse: collapse;
+    width: 100%;   
+}
+#messageList tr {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+}
+#messageList tr:hover {
+    background-color: #ccc;
+}
+#messageList th {
+    background-color: #fff;
+}
+#messageList th, #messageList td {
+    padding: 3px 5px;
+}
+#messageList td:hover {
+    cursor: pointer;
+}
+
+/* ------------------------------ */
+
+.align-right {
+  text-align: right;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.scrollable {
+  overflow: auto;
+  width: 100%;
+  height: 500px;
+}
+
+.message-box {
+  padding: 10px;
+  word-wrap: break-word;
+  width: 100%;
+  height: 500px;
+  border: 1px solid black;
+}
+
+.textbox-size {
+  resize: none;
+  width: 100%;
+  height: 500px;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.listingbox {
+  padding-top: 50px;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+/*修改样式位置*/
+.form-line{
+    margin-top: 7%;
+}
+
+#btn-register{
+    margin-left:60.5%;
+    margin-top: 40px;
+    width: 200px;
+}
+
+#register_title{
+    margin-left: 34%;
+}
+
+#btn-login{
+    color: red;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+}
+
+#register-body {
+    margin-top: 70px;
+    padding: 70px 350px 0px 350px;
+}
+
+#sign-body{
+    margin-top: 70px;
+    padding: 70px 350px 0px 350px;
+}
+
+.h-title{
+    font-size: 20px;
+    color: white;
+    border-radius: 11px;
+    width: 7%;
+    background: rgb(170,91,156);
+    padding: 4px;
+}
+
+.h-4title{
+    font-size: 20px;
+    color: white;
+    border-radius: 11px;
+    width: 12%;
+    background: rgb(170,91,156);
+    padding: 4px;
+}
+
+#book-list{
+    margin-left: 0;
+}
+
+#my-book{
+    margin-top: 30px;
+}
+
+#bookrent-list{
+    margin-left: 0;
+}
+
+#addbook{
+    color: white;
+    border-radius: 11px;
+    width: 20%;
+    background: rgb(170,91,156);
+    padding: 4px;
+}
+
+#h-find{
+    color: white;
+    border-radius: 11px;
+    background: rgb(170,91,156);
+    padding: 4px;
+    margin-bottom: 8px;
+}
+
+#h-findafter{
+    color: white;
+    border-radius: 11px;
+    background: rgb(170,91,156);
+    padding: 4px;
+    margin-bottom: 8px;
+}
+
+.title-style{
+    background: rgb(0,153,255);
+    color: white;
+    padding: 4px;
+}
+
+.p-laststyle{
+    padding-left: 100px;
+}
+
+.table-striped>tbody>tr{
+    background-color: #f9f9f9;
+}
+
+#find-search {
+    width: 600px;
+    margin: 0 auto;
+}
+
+#radio-width{
+    width: 1000px;
+}
+
+#container-width{
+    width: 800px;
+}
